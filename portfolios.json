@@ -1,0 +1,57 @@
+{
+  "test@example.com": [
+    {
+      "ticker": "TSLY",
+      "totalShares": 12,
+      "purchaseDate": "2025-02-20",
+      "purchasePrice": 11.4601,
+      "createdAt": "2025-02-20T19:50:16.997Z"
+    }
+  ],
+  "T": [
+    {
+      "ticker": "LFGY",
+      "totalShares": 12,
+      "purchaseDate": "2025-02-20",
+      "purchasePrice": 47.61,
+      "createdAt": "2025-02-20T21:35:10.819Z"
+    },
+    {
+      "ticker": "YMAG",
+      "totalShares": 111,
+      "purchaseDate": "2025-01-14",
+      "purchasePrice": 18.1,
+      "createdAt": "2025-02-20T22:39:57.072Z"
+    },
+    {
+      "ticker": "TSLY",
+      "totalShares": 34,
+      "purchaseDate": "2025-02-21",
+      "purchasePrice": 11.51,
+      "createdAt": "2025-02-21T12:40:32.807Z"
+    },
+    {
+      "ticker": "FBY",
+      "totalShares": 12,
+      "purchaseDate": "2025-02-21",
+      "purchasePrice": 20.15,
+      "createdAt": "2025-02-21T12:40:44.244Z"
+    }
+  ],
+  "tommy": [
+    {
+      "ticker": "AMZY",
+      "totalShares": 111,
+      "purchaseDate": "2025-02-21",
+      "purchasePrice": 18.29,
+      "createdAt": "2025-02-21T15:20:13.395Z"
+    },
+    {
+      "ticker": "YMAX",
+      "totalShares": 111,
+      "purchaseDate": "2025-01-02",
+      "purchasePrice": 16.39,
+      "createdAt": "2025-02-21T15:36:31.928Z"
+    }
+  ]
+}
