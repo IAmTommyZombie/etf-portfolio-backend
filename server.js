@@ -190,9 +190,6 @@ app.post("/api/portfolio/:username", async (req, res) => {
 
     const portfolios = await readFile(PORTFOLIOS_FILE);
     const userPortfolio = portfolios[username] || [];
-    const existingIndex = userPortfolio.findIndex(
-      (item) => item.ticker === ticker
-    );
 
     const newItem = {
       ticker,
@@ -202,18 +199,7 @@ app.post("/api/portfolio/:username", async (req, res) => {
       createdAt: new Date().toISOString(),
     };
 
-    if (existingIndex !== -1) {
-      userPortfolio[existingIndex].totalShares += newItem.totalShares;
-      userPortfolio[existingIndex].purchasePrice =
-        (userPortfolio[existingIndex].purchasePrice *
-          userPortfolio[existingIndex].totalShares +
-          newItem.purchasePrice * newItem.totalShares) /
-        (userPortfolio[existingIndex].totalShares + newItem.totalShares);
-      userPortfolio[existingIndex].purchaseDate = newItem.purchaseDate;
-    } else {
-      userPortfolio.push(newItem);
-    }
-
+    userPortfolio.push(newItem); // Always append, no merge
     portfolios[username] = userPortfolio;
     await writeFile(PORTFOLIOS_FILE, portfolios);
 
