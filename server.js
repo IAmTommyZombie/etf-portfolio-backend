@@ -276,6 +276,44 @@ app.delete("/api/distributions/:username/:id", async (req, res) => {
   }
 });
 
+app.put("/api/portfolio/:username/:createdAt", async (req, res) => {
+  try {
+    const { username, createdAt } = req.params;
+    const { ticker, totalShares, purchaseDate, purchasePrice } = req.body;
+
+    if (!ticker || !totalShares || !purchaseDate || !purchasePrice) {
+      return res.status(400).json({ error: "Missing required fields" });
+    }
+
+    const portfolios = await readFile(PORTFOLIOS_FILE);
+    const userPortfolio = portfolios[username] || [];
+    const index = userPortfolio.findIndex(
+      (item) => item.createdAt === createdAt
+    );
+
+    if (index === -1) {
+      return res.status(404).json({ error: "Purchase not found" });
+    }
+
+    userPortfolio[index] = {
+      ...userPortfolio[index],
+      ticker,
+      totalShares: Number(totalShares),
+      purchaseDate,
+      purchasePrice: Number(purchasePrice),
+    };
+
+    portfolios[username] = userPortfolio;
+    await writeFile(PORTFOLIOS_FILE, portfolios);
+    res.json({
+      message: "Purchase updated successfully",
+      data: userPortfolio[index],
+    });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to update purchase" });
+  }
+});
+
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
