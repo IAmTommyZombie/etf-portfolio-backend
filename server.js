@@ -45,7 +45,7 @@ const initializeFiles = async () => {
     try {
       await fs.access(file);
     } catch {
-      const initialData = file === USERS_FILE ? {} : {}; // Empty users.json initially
+      const initialData = file === USERS_FILE ? {} : {};
       await fs.writeFile(file, JSON.stringify(initialData), "utf8");
       console.log(`Initialized ${path.basename(file)}`);
     }
@@ -199,7 +199,7 @@ app.post("/api/portfolio/:username", async (req, res) => {
       createdAt: new Date().toISOString(),
     };
 
-    userPortfolio.push(newItem); // Always append, no merge
+    userPortfolio.push(newItem); // Store each purchase separately—no merge
     portfolios[username] = userPortfolio;
     await writeFile(PORTFOLIOS_FILE, portfolios);
 
